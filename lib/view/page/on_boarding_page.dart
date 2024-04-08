@@ -1,6 +1,5 @@
 import 'package:dating_app/view/widget/button_widget.dart';
 import 'package:dating_app/view_model/on_boarding_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dating_app/constant.dart';
 import 'package:get/get.dart';
@@ -110,7 +109,7 @@ class OnBoardingPage extends StatelessWidget {
               flex: 1,
               child: ButtonWidget(
                 title: 'Start',
-                onpress: () {},
+                onPress: () { Get.toNamed('/discover'); },
               )),
         ],
       ),

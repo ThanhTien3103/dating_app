@@ -1,4 +1,5 @@
 import 'package:dating_app/bindings.dart';
+import 'package:dating_app/view/page/discover_page.dart';
 import 'package:dating_app/view/page/on_boarding_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/onboarding', 
       getPages: [
         GetPage(name: '/onboarding', page: () => OnBoardingPage(key: UniqueKey(),) ),
+        GetPage(name: '/discover', page: () => const DiscoverPage()),
       ],
     );
   }

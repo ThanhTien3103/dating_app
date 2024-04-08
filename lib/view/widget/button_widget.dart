@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:dating_app/constant.dart';
 class ButtonWidget extends StatelessWidget {
   final String title;
-  final Function() onpress;
-  const ButtonWidget({super.key, required this.title, required this.onpress});
+  final Function() onPress;
+  const ButtonWidget({super.key, required this.title, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,7 @@ class ButtonWidget extends StatelessWidget {
           color: OnboardingConstant.signUpButtonColor
       ),
       child: CupertinoButton(
-        onPressed: onpress,
-
+        onPressed: onPress,
         child: Text(title, style: const TextStyle(color: CupertinoColors.white, fontWeight: FontWeight.bold),),
       ),
     );
