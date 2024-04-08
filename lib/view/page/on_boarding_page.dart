@@ -34,8 +34,9 @@ class OnBoardingPage extends StatelessWidget {
               onPageChanged: (index) {
                 if (index < 1) {
                   controller.pageController.jumpToPage(1);
-                } else if (index > OnboardingConstant.images.length-2) {
-                  controller.pageController.jumpToPage(OnboardingConstant.images.length-2);
+                } else if (index > OnboardingConstant.images.length - 2) {
+                  controller.pageController
+                      .jumpToPage(OnboardingConstant.images.length - 2);
                 } else {
                   controller.changePage(index);
                 }
@@ -45,22 +46,21 @@ class OnBoardingPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ClipRRect(
                   child: Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: Transform.scale(
-                        scale: index == controller.currentPage.value ? 1 : 0.8,
-                        alignment: FractionalOffset.center,
-                        child: Image.asset(
-                          OnboardingConstant.images[index],
-                          fit: BoxFit.fill,
+                      alignment: Alignment.center,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Transform.scale(
+                          scale:
+                              index == controller.currentPage.value ? 1 : 0.8,
+                          alignment: FractionalOffset.center,
+                          child: Image.asset(
+                            OnboardingConstant.images[index],
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                    )
-                  ),
+                      )),
                 );
               },
             ),
@@ -109,7 +109,9 @@ class OnBoardingPage extends StatelessWidget {
               flex: 1,
               child: ButtonWidget(
                 title: 'Start',
-                onPress: () { Get.toNamed('/discover'); },
+                onPress: () {
+                  Get.toNamed('/home');
+                },
               )),
         ],
       ),

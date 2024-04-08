@@ -22,6 +22,7 @@ class NavigatorWidgetConstant {
   static const Color redIconColor = Color(0xFFe94057);
   static const Color orangeIconColor = Color(0xfff27121);
   static const Color purpleIconColor = Color(0xff8a2387);
+  static const Color notSelectColor = Color(0xffadafbb);
 }
 class UserDummyConstant {
   static const List<String> images = [
