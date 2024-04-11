@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dating_app/constant.dart';
 
+import '../../model/user.dart';
+
 class DiscoverPage extends StatelessWidget {
   const DiscoverPage({super.key});
 
@@ -62,129 +64,139 @@ class DiscoverPage extends StatelessWidget {
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.6,
-                    child: Stack(
-                        children: List.generate(
-                      UserDummyConstant.images.length,
-                      (index) => Draggable(
-                        feedback: Obx(
-                          () => Transform.rotate(
-                            angle: controller.isDragLeft.value,
-                            child: Container(
-                                padding: const EdgeInsets.all(50),
-                                alignment: Alignment.center,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Center(
-                                      child: Image.asset(
-                                        UserDummyConstant.images[index],
-                                        fit: BoxFit.fitHeight,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      bottom: 10,
-                                      left: 20,
-                                      right: 20,
-                                      child: Container(
-                                          height: 103,
-                                          padding: const EdgeInsets.fromLTRB(
-                                              10, 20, 0, 0),
-                                          alignment: Alignment.bottomLeft,
-                                          color: Colors.black.withOpacity(0.1),
-                                          child: const Column(
-                                            children: [
-                                              Text(
-                                                "Jessica Parker, 23",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                                textAlign: TextAlign.left,
-                                              ),
-                                              Text(
-                                                "Profession model",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 14),
-                                                textAlign: TextAlign.left,
-                                              )
-                                            ],
-                                          )),
-                                    ),
-                                    Center(
-                                      child: (controller.isDragLeft.value == 0.2)?
-                                      const ActionFloatingWidget(icon: Icons.favorite, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.redIconColor, size: 41, backgroundSize: 80,)
-                                          :
-                              const ActionFloatingWidget(icon: Icons.clear, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.orangeIconColor, size: 30, backgroundSize: 80,)
-                      )
-                                  ],
-                                )),
-                          ),
-                        ),
-                        axis: Axis.horizontal,
-                        childWhenDragging: Container(),
-                        child: Container(
-                            padding: const EdgeInsets.all(50),
-                            alignment: Alignment.center,
-                            height: MediaQuery.of(context).size.height * 0.6,
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Image.asset(
-                                    UserDummyConstant.images[index],
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 10,
-                                  left: 20,
-                                  right: 20,
+                    child: ValueListenableBuilder<List<User>>(
+                      key: UniqueKey(),
+                      valueListenable: controller.discoverList,
+                      builder: (BuildContext context, value, Widget? child) {
+                        return Stack(
+                            children: List.generate(
+                              value.length,
+                                  (index) => Draggable(
+                                feedback: Obx(() => Transform.rotate(
+                                  angle: controller.isDragLeft.value,
                                   child: Container(
-                                      height: 103,
-                                      padding: const EdgeInsets.fromLTRB(
-                                          10, 20, 0, 0),
-                                      alignment: Alignment.bottomLeft,
-                                      color: Colors.black.withOpacity(0.1),
-                                      child: const Column(
+                                      padding: const EdgeInsets.all(50),
+                                      alignment: Alignment.center,
+                                      height:
+                                      MediaQuery.of(context).size.height * 0.6,
+                                      child: Stack(
+                                        alignment: Alignment.center,
                                         children: [
-                                          Text(
-                                            "Jessica Parker, 23",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold),
-                                            textAlign: TextAlign.left,
+                                          Center(
+                                            child: Image.asset(
+                                              value[index].image,
+                                              fit: BoxFit.fitHeight,
+                                            ),
                                           ),
-                                          Text(
-                                            "Profession model",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 14),
-                                            textAlign: TextAlign.left,
+                                          Positioned(
+                                            bottom: 10,
+                                            left: 20,
+                                            right: 20,
+                                            child: Container(
+                                                height: 103,
+                                                padding: const EdgeInsets.fromLTRB(
+                                                    10, 20, 0, 0),
+                                                alignment: Alignment.bottomLeft,
+                                                color: Colors.black.withOpacity(0.1),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      "${value[index].name}, ${value[index].age}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 24,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                      textAlign: TextAlign.left,
+                                                    ),
+                                                    Text(
+                                                      value[index].job,
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 14),
+                                                      textAlign: TextAlign.left,
+                                                    )
+                                                  ],
+                                                )),
+                                          ),
+                                          Center(
+                                              child: (controller.isDragLeft.value == 0.2)?
+                                              const ActionFloatingWidget(icon: Icons.favorite, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.redIconColor, size: 41, backgroundSize: 80,)
+                                                  :
+                                              const ActionFloatingWidget(icon: Icons.clear, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.orangeIconColor, size: 30, backgroundSize: 80,)
                                           )
                                         ],
                                       )),
-                                )
-                              ],
-                            )),
-                        onDragEnd: (detail) {
-                          controller.isDragLeft.value = 0;
-                        },
-                        onDragUpdate: (detail) {
-                          if (detail.delta.dx > 0 &&
-                              controller.isDragLeft.value != 0.2) {
-                            controller.change(0.2);
-                          }
-                          if (detail.delta.dx < 0 &&
-                              controller.isDragLeft.value != -0.2) {
-                            controller.change(-0.2);
-                          }
-                        },
-                      ),
-                    )),
+                                ),),
+                                axis: Axis.horizontal,
+                                childWhenDragging: Container(),
+                                child: Container(
+                                    padding: const EdgeInsets.all(50),
+                                    alignment: Alignment.center,
+                                    height: MediaQuery.of(context).size.height * 0.6,
+                                    child: Stack(
+                                      children: [
+                                        Center(
+                                          child: Image.asset(
+                                            value[index].image,
+                                            fit: BoxFit.fitHeight,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 10,
+                                          left: 20,
+                                          right: 20,
+                                          child: Container(
+                                              height: 103,
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  10, 20, 0, 0),
+                                              alignment: Alignment.bottomLeft,
+                                              color: Colors.black.withOpacity(0.1),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "${value[index].name}, ${value[index].age}",
+                                                    style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 24,
+                                                        fontWeight: FontWeight.bold),
+                                                    textAlign: TextAlign.left,
+                                                  ),
+                                                  Text(
+                                                    value[index].job,
+                                                    style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 14),
+                                                    textAlign: TextAlign.left,
+                                                  )
+                                                ],
+                                              )),
+                                        )
+                                      ],
+                                    )),
+                                onDragEnd: (detail) {
+                                  if(controller.isDragLeft.value == 0.2) {
+                                    controller.addFavorite();
+                                  } else if (controller.isDragLeft.value == -0.2) {
+                                    controller.cancelAction();
+                                  }
+                                  controller.isDragLeft.value = 0;
+                                },
+                                onDragUpdate: (detail) {
+                                  if (detail.delta.dx > 0 &&
+                                      controller.isDragLeft.value != 0.2) {
+                                    controller.change(0.2);
+                                  }
+                                  if (detail.delta.dx < 0 &&
+                                      controller.isDragLeft.value != -0.2) {
+                                    controller.change(-0.2);
+                                  }
+                                },
+                              ),
+                            ));
+                      },
+
+                    )
                   ),
                 ],
               ),
@@ -194,8 +206,8 @@ class DiscoverPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     //Todo: like, cancel and bookmark action
-                    CupertinoButton(child: const ActionFloatingWidget(icon: Icons.clear, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.orangeIconColor, size: 30, backgroundSize: 78), onPressed: () {}),
-                    CupertinoButton(child: const ActionFloatingWidget(icon: Icons.favorite, backgroundColor: NavigatorWidgetConstant.redIconColor, iconColor: Colors.white, size: 51, backgroundSize: 99), onPressed: () {}),
+                    CupertinoButton(child: const ActionFloatingWidget(icon: Icons.clear, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.orangeIconColor, size: 30, backgroundSize: 78), onPressed: () {controller.cancelAction();}),
+                    CupertinoButton(child: const ActionFloatingWidget(icon: Icons.favorite, backgroundColor: NavigatorWidgetConstant.redIconColor, iconColor: Colors.white, size: 51, backgroundSize: 99), onPressed: () {controller.addFavorite();}),
                     CupertinoButton(child: const ActionFloatingWidget(icon: Icons.star, backgroundColor: Colors.white, iconColor: NavigatorWidgetConstant.purpleIconColor, size: 30, backgroundSize: 78), onPressed: () {})
                   ],
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'model/user.dart';
 class OnboardingConstant {
   static const List<String> images = [
     "assets/images/onbroadingimage2.png",
@@ -37,5 +38,18 @@ class UserDummyConstant {
     "assets/images/photo-9.png",
     "assets/images/photo-10.png",
     "assets/images/photo-11.png",
+  ];
+  static List<User> dummyUser = [
+    User('Jessica Parker', images[0], 23, 1, 'Professional model'),
+    User('Camila Snow', images[1], 24, 1, 'Model'),
+    User('Snow Ser', images[2], 22, 1, 'Professional'),
+    User('Senorita Camila', images[3], 21, 1, 'Dancer'),
+    User('Jr Black', images[4], 23, 1, 'Singer'),
+    User('Julia Annabelle', images[5], 21, 1, 'Photograph'),
+    User('Lily Parker', images[6], 18, 1, 'Professional'),
+    User('Jessica Evans', images[7], 19, 1, 'Professional'),
+    User('Bred Jackson', images[8], 25, 1, 'Photograph'),
+    User('Jessica Potter', images[9], 27, 1, 'Professional'),
+    User('Jessica Joli', images[10], 28, 1, 'Professional'),
   ];
 }

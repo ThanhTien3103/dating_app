@@ -1,5 +1,4 @@
 import 'package:dating_app/bindings.dart';
-import 'package:dating_app/view/page/discover_page.dart';
 import 'package:dating_app/view/page/home_page.dart';
 import 'package:dating_app/view/page/on_boarding_page.dart';
 import 'package:flutter/material.dart';
